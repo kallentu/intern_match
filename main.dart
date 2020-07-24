@@ -8,8 +8,8 @@ main() {
   File namesData= new File("data/names.csv");
   namesData.readAsLines().then(addNames);
 
-  File jul10Data = new File("data/jul-10.csv");
-  jul10Data.readAsLines().then(addMatches).whenComplete(() {
+  File prevMatchesData = new File("data/prev-matches.csv");
+  prevMatchesData.readAsLines().then(addMatches).whenComplete(() {
     print(matched.keys.length.toString() + " people have been matched.\n");
     makeNewMatches();
     printNewMatches();
@@ -35,6 +35,7 @@ void addMatches(List<String> lines) {
     for (int i = 0; i < names.length; i += 2) {
       if (names[i] != "" && names[i] != null) {
         matched[names[i]].add(names[i+1]);
+        matched[names[i+1]].add(names[i]);
         // print(names[i] + " matched with " + matched[names[i]].last);
       }
     }
