@@ -34,8 +34,8 @@ void addMatches(List<String> lines) {
     List<String> names = line.split(",");
     for (int i = 0; i < names.length; i += 2) {
       if (names[i] != "" && names[i] != null) {
-        matched[names[i]].add(names[i+1]);
-        matched[names[i+1]].add(names[i]);
+        if (matched.containsKey(names[i])) matched[names[i]].add(names[i+1]);
+        if (matched.containsKey(names[i+1])) matched[names[i+1]].add(names[i]);
         // print(names[i] + " matched with " + matched[names[i]].last);
       }
     }
